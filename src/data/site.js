@@ -21,6 +21,6 @@ export const site = {
     email: 'sheelashitpatel@gmail.com',
     // Resume opens IN-BROWSER (new tab), no forced download.
     // Drop your file at /public/resume.pdf — it is served at /resume.pdf.
-    resume: '/resume.pdf',
+    resume: '/Sheel_Patel_Resume.pdf',
   },
 }

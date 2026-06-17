@@ -86,7 +86,7 @@ export const projects = [
     stack: ['REPLACE', 'WITH', 'REAL', 'STACK'],
     metrics: [], // add real {label, value} chips when you have them
     links: {
-      repo: 'https://github.com/Sheel34', // ← BHUVAN repo
+      repo: 'https://github.com/Sheel34/BHUVAN', // ← BHUVAN repo
     },
     accent: 'teal',
     visual: '3d',
