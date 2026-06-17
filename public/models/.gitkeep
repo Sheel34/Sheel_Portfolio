@@ -1,0 +1,2 @@
+# Drop Blender-exported .glb / .gltf files here.
+# Load one in src/three/ReconstructionGlobe.jsx via drei useGLTF — see README.

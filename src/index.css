@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-space-900 text-slate-200 font-display antialiased;
+    /* Subtle vignette so the canvas edges fade into the page chrome. */
+    background-image: radial-gradient(
+      120% 80% at 50% -10%,
+      rgba(56, 189, 248, 0.08),
+      rgba(4, 6, 10, 0) 60%
+    );
+  }
+  ::selection {
+    @apply bg-signal/30 text-white;
+  }
+}
+
+@layer components {
+  /* Telemetry-style label: small, spaced, mono. Used for section eyebrows. */
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest2 text-signal/80;
+  }
+  /* Thin instrument divider line. */
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent;
+  }
+  /* Faint engineering grid overlay (CSS, no asset). */
+  .grid-overlay {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* Respect reduced-motion: kill smooth scroll for users who opt out. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
