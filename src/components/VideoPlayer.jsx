@@ -1,21 +1,14 @@
 import { useRef, useState } from 'react'
 
-// ─────────────────────────────────────────────────────────────────────────────
-// VideoPlayer — inline, on-page video. Shows a poster + play button (YouTube-
-// style preview); on click it plays in place with native controls. Viewers can
-// go fullscreen via the controls. Nothing redirects off-page.
-//
-// Mobile-safe: `playsInline` (iOS plays in place instead of forcing native
-// fullscreen), `preload="metadata"` (only the poster + a few KB load until the
-// user hits play — friendly on mobile data). Video lives in /public.
-// ─────────────────────────────────────────────────────────────────────────────
+// Inline video: poster + play button, then native controls in place (fullscreen
+// via controls, no redirect). playsInline + preload="metadata" keep it mobile-
+// and data-friendly. Source lives in /public.
 export default function VideoPlayer({ src, poster, label = 'Demo' }) {
   const ref = useRef(null)
   const [started, setStarted] = useState(false)
 
   const play = () => {
     setStarted(true)
-    // Defer so controls mount before we call play().
     requestAnimationFrame(() => ref.current?.play())
   }
 
@@ -25,14 +18,13 @@ export default function VideoPlayer({ src, poster, label = 'Demo' }) {
         ref={ref}
         src={src}
         poster={poster}
-        controls={started} // controls appear once playing (clean preview before)
+        controls={started}
         playsInline
         preload="metadata"
         className="h-full w-full object-cover"
         onPlay={() => setStarted(true)}
       />
 
-      {/* Poster overlay with play button — hidden once playback starts. */}
       {!started && (
         <button
           type="button"
@@ -41,7 +33,6 @@ export default function VideoPlayer({ src, poster, label = 'Demo' }) {
           className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors hover:bg-black/10"
         >
           <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-black/50 backdrop-blur-sm transition-transform group-hover:scale-110">
-            {/* Play triangle */}
             <svg width="22" height="24" viewBox="0 0 22 24" fill="none" aria-hidden="true">
               <path d="M21 12 0 24V0l21 12Z" fill="#5eead4" />
             </svg>

@@ -1,12 +1,7 @@
 import { useMemo } from 'react'
 import * as THREE from 'three'
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Atmosphere — CUSTOM GLSL SHADER. Fresnel rim glow on a back-side sphere shell
-// around the planet. Cheap fake of atmospheric scattering / volumetric halo.
-// Additive blend → it blooms in post-processing for the "AAA edge light" look.
-// ─────────────────────────────────────────────────────────────────────────────
-
+// Fresnel rim-glow shell — fake atmospheric scattering. Additive so it blooms.
 const vertexShader = /* glsl */ `
   varying vec3 vNormalW;
   varying vec3 vPositionW;
@@ -26,18 +21,12 @@ const fragmentShader = /* glsl */ `
   varying vec3 vPositionW;
   void main() {
     vec3 viewDir = normalize(cameraPosition - vPositionW);
-    // Back-side sphere: invert normal so the rim (grazing angle) is brightest.
     float fres = pow(1.0 - max(dot(-vNormalW, viewDir), 0.0), uPower);
     gl_FragColor = vec4(uColor * fres * uIntensity, fres);
   }
 `
 
-export default function Atmosphere({
-  scale = 1.18, // shell radius relative to planet
-  color = '#38bdf8',
-  power = 3.2,
-  intensity = 1.5,
-}) {
+export default function Atmosphere({ scale = 1.18, color = '#38bdf8', power = 3.2, intensity = 1.5 }) {
   const uniforms = useMemo(
     () => ({
       uColor: { value: new THREE.Color(color) },

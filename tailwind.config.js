@@ -4,21 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Aerospace / instrument palette — deep space + cyan telemetry + amber warning.
+        // Cinematic deep-space palette — true black, glacial blue, VENOM red.
         space: {
-          900: '#04060a', // near-black background
-          800: '#080c14',
-          700: '#0d131f',
-          600: '#141c2b',
+          900: '#02030a', // near-black void
+          800: '#05070f',
+          700: '#0a0e1a',
+          600: '#121826',
         },
         signal: {
-          DEFAULT: '#5eead4', // teal telemetry accent
+          DEFAULT: '#7cc8ff', // glacial blue glow
           blue: '#38bdf8',
-          amber: '#f5a524', // instrument warning, use sparingly
+          ice: '#bfe6ff',
+          amber: '#f5a524',
+        },
+        venom: {
+          DEFAULT: '#ff2e43', // VENOM red (from the title art)
+          glow: '#ff5566',
         },
       },
       fontFamily: {
-        // Display = geometric sans; mono = tool/telemetry labels.
+        // Poster = grunge condensed (VENOM title); condensed = subheads;
+        // display = body sans; mono = telemetry labels.
+        poster: ['Anton', 'Impact', 'sans-serif'],
+        condensed: ['Oswald', 'system-ui', 'sans-serif'],
         display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },

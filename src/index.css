@@ -8,36 +8,47 @@
   }
   body {
     @apply bg-space-900 text-slate-200 font-display antialiased;
-    /* Subtle vignette so the canvas edges fade into the page chrome. */
-    background-image: radial-gradient(
-      120% 80% at 50% -10%,
-      rgba(56, 189, 248, 0.08),
-      rgba(4, 6, 10, 0) 60%
-    );
   }
   ::selection {
-    @apply bg-signal/30 text-white;
+    @apply bg-venom/40 text-white;
   }
 }
 
 @layer components {
-  /* Telemetry-style label: small, spaced, mono. Used for section eyebrows. */
+  /* Telemetry label — small mono, spaced. */
   .eyebrow {
     @apply font-mono text-[11px] uppercase tracking-widest2 text-signal/80;
   }
-  /* Thin instrument divider line. */
-  .hairline {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent;
+
+  /* Grunge movie-poster VENOM title — tall condensed, red underglow + line. */
+  .poster-title {
+    @apply font-poster uppercase leading-[0.85] text-white;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 22px rgba(255, 46, 67, 0.55), 0 0 60px rgba(255, 46, 67, 0.25);
   }
-  /* Faint engineering grid overlay (CSS, no asset). */
-  .grid-overlay {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 64px 64px;
+  /* Thin red "laser" rule, like the title art. */
+  .venom-rule {
+    @apply h-[2px] w-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #ff2e43 18%,
+      #ff8a97 50%,
+      #ff2e43 82%,
+      transparent
+    );
+    box-shadow: 0 0 14px rgba(255, 46, 67, 0.6);
+  }
+
+  /* Scrim so text stays legible over the 3D scene. */
+  .scrim-bottom {
+    background: linear-gradient(to top, rgba(2, 3, 10, 0.92), rgba(2, 3, 10, 0) 70%);
+  }
+  .scrim-left {
+    background: linear-gradient(to right, rgba(2, 3, 10, 0.9), rgba(2, 3, 10, 0) 65%);
   }
 }
 
-/* Respect reduced-motion: kill smooth scroll for users who opt out. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
